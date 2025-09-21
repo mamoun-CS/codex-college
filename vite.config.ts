@@ -28,6 +28,7 @@ export default defineConfig({
       'fitting-singularly-heron.ngrok-free.app',
       'localhost',
       '127.0.0.1',
+      '10.229.120.84',
       '0.0.0.0'
     ],
   },
@@ -39,6 +40,7 @@ export default defineConfig({
       'fitting-singularly-heron.ngrok-free.app',
       'localhost',
       '127.0.0.1',
+      '10.229.120.84',
       '0.0.0.0'
     ],
   }
