@@ -88,7 +88,7 @@ const DealForm = () => {
       });
     } else {
       // ✅ Send data to n8n webhook
-      fetch("https://n8n.srv936449.hstgr.cloud/webhook-test/9bc23745-724c-4fac-8b42-f6651096a01c", {
+      fetch("https://n8n.srv936449.hstgr.cloud/webhook/9bc23745-724c-4fac-8b42-f6651096a01c", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +141,7 @@ const DealForm = () => {
         // إرسال الرقم الجديد الذي دخله المستخدم
         const payload = { ...formData, phone: whatsappPhone }; // استبدل الرقم القديم بالجديد
 
-        fetch("https://n8n.srv936449.hstgr.cloud/webhook-test/47d8c0e9-40a4-498a-82d6-b5bcda26a342", {
+        fetch("https://n8n.srv936449.hstgr.cloud/webhook/47d8c0e9-40a4-498a-82d6-b5bcda26a342", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -179,7 +179,7 @@ const DealForm = () => {
     // أرسل البيانات إلى Webhook
     const payload = { ...formData, email: emailToSend };
 
-    fetch("https://n8n.srv936449.hstgr.cloud/webhook-test/6e9c7fda-712a-4e23-bfd8-4c07779f255c", {
+    fetch("https://n8n.srv936449.hstgr.cloud/webhook/6e9c7fda-712a-4e23-bfd8-4c07779f255c", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
