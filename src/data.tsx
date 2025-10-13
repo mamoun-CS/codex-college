@@ -11,8 +11,8 @@ export interface EmployeeDeal {
   monthlyDealsCount: number;
   dealsPerEmployeeDaily: number;
   dealsPerEmployeeMonthly: number;
+  amount: number; // الحقل الجديد
 }
-
 
 export function useEmployeeDealsData() {
   const [data, setData] = useState<EmployeeDeal[]>([]);
@@ -25,11 +25,11 @@ export function useEmployeeDealsData() {
       setError(null);
 
       const res = await fetch(
-        "https://n8n.srv936449.hstgr.cloud/webhook/5e076f7c-b35e-49ed-a46e-82c7441b43df",
+        "https://n8n.srv1018345.hstgr.cloud/webhook/5e076f7c-b35e-49ed-a46e-82c7441b43df",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}), 
+          body: JSON.stringify({}),
         }
       );
 
@@ -37,23 +37,43 @@ export function useEmployeeDealsData() {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
 
-      const result = await res.json();
+      // ناخذ الرد كـ نص أول
+      const text = await res.text();
+
+      if (!text || text.trim() === "") {
+        // إذا ما في بيانات (زي أول الشهر) → رجّع مصفوفة فاضية
+        setData([]);
+        return;
+      }
+
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        throw new Error("Invalid JSON format: " + text);
+      }
+
       if (!Array.isArray(result)) {
         throw new Error("Invalid data format received from API");
       }
 
       // التحويل من مفاتيح عربية → انجليزية
-      const mapped: EmployeeDeal[] = result.map((item, index) => ({
-        id: item["#ID"] ?? String(index + 1),
-        employeeName: item["اسم الموظف"],
-        date: item["التاريخ"],
-        dailyAmountSum: item["مجموع المبالغ اليومية"],
-        monthlyAmountSum: item["مجموع المبالغ الشهرية"],
-        dailyDealsCount: item["عدد الصفقات اليومية"],
-        monthlyDealsCount: item["عدد الصفقات الشهرية"],
-        dealsPerEmployeeDaily: item["عدد الصفقات لكل موظف (اليوم)"],
-        dealsPerEmployeeMonthly: item["عدد الصفقات لكل موظف (الشهر)"],
-      }));
+      const mapped: EmployeeDeal[] = result.map((item, index) => {
+        return {
+          id: item["ID#"] ?? String(index + 1),
+          employeeName: item["اسم الموظف"],
+          date: item["التاريخ"],
+          dailyAmountSum: Number(item["مجموع المبالغ اليومية"]) || 0,
+          monthlyAmountSum: Number(item["مجموع المبالغ الشهرية"]) || 0,
+          dailyDealsCount: Number(item["عدد الصفقات اليومية"]) || 0,
+          monthlyDealsCount: Number(item["عدد الصفقات الشهرية"]) || 0,
+          dealsPerEmployeeDaily:
+            Number(item["عدد الصفقات لكل موظف (اليوم)"]) || 0,
+          dealsPerEmployeeMonthly:
+            Number(item["عدد الصفقات لكل موظف (الشهر)"]) || 0,
+          amount: Number(item["amount"]) || 0,
+        };
+      });
 
       setData(mapped);
     } catch (error) {
@@ -70,15 +90,13 @@ export function useEmployeeDealsData() {
 
     // تحديث يومياً الساعة 8:00 مساءً
     const interval = setInterval(() => {
-  
       const now = new Date();
-      if (now.getHours() === 15 && now.getMinutes() === 33) {
+      if (now.getHours() === 20 && now.getMinutes() === 0) {
         fetchData();
       }
     }, 60000);
 
     return () => clearInterval(interval);
-
   }, []);
 
   return { data, loading, error, refetch: fetchData };

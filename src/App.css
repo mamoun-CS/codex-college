@@ -107,6 +107,14 @@
     transform: rotate(360deg);
   }
 }
+.today-indicator {
+  background: #e3f2fd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #90caf9;
+  color: #1565c0;
+  font-weight: bold;
+}
 
 /* Summary Section */
 .summary-section {

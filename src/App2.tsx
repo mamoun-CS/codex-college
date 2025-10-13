@@ -106,34 +106,13 @@ function App() {
   })
 
   const summaryData = useMemo(() => {
-    const totalDailyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.dailyAmountSum || 0), 0)
-    const totalMonthlyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.monthlyAmountSum || 0), 0)
-    const totalDailyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.dailyDealsCount || 0), 0)
-    const totalMonthlyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.monthlyDealsCount || 0), 0)
+    const totalDailyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.dailyAmountSum || 0), 0)
+    const totalMonthlyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.monthlyAmountSum || 0), 0)
+    const totalDailyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.dailyDealsCount || 0), 0)
+    const totalMonthlyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.monthlyDealsCount || 0), 0)
     return { totalDailyAmount, totalMonthlyAmount, totalDailyDeals, totalMonthlyDeals }
-  }, [filteredData])/*
+  }, [filteredData])
 
-  const summaryData = useMemo(() => {
-  const today = new Date().toISOString().split("T")[0] // تاريخ اليوم YYYY-MM-DD
-  const todayData = filteredData.find((item: EmployeeDeal) => item.date === today)
-
-  // إذا في بيانات لليوم → استخدمها
-  const totalDailyAmount = todayData ? (todayData.dailyAmountSum || 0) : 0
-  const totalDailyDeals = todayData ? (todayData.dailyDealsCount || 0) : 0
-
-  // الشهرية تتجمع عادي (من كل التواريخ)
-  const totalMonthlyAmount = filteredData.reduce(
-    (sum: number, item: EmployeeDeal) => (item.monthlyAmountSum || 0),
-    0
-  )
-  const totalMonthlyDeals = filteredData.reduce(
-    (sum: number, item: EmployeeDeal) => (item.monthlyDealsCount || 0),
-    0
-  )
-
-  return { totalDailyAmount, totalMonthlyAmount, totalDailyDeals, totalMonthlyDeals }
-}, [filteredData])
-*/
   const chartData = useMemo(() => {
     const employeeDailyMap = new Map<string, number>()
     const employeeMonthlyMap = new Map<string, number>()
