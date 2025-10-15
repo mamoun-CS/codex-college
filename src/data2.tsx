@@ -25,7 +25,7 @@ export function useEmployeeDealsData() {
       setError(null);
 
       const res = await fetch(
-        "https://n8n.srv1018345.hstgr.cloud/webhook/5e076f7c-b35e-49ed-a46e-82c7441b43df",
+        import.meta.env.VITE_WEBHOOK_DATA_FETCH,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

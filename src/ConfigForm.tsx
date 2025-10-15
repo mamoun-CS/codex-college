@@ -31,7 +31,7 @@ function ConfigForm() {
 
     try {
       const response = await fetch(
-        "https://n8n.srv1018345.hstgr.cloud/webhook/7951ec37-23f7-418d-adb2-23714ba6a723",
+        import.meta.env.VITE_WEBHOOK_CONFIG,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ const handlePhoneSubmit = async () => {
 
   try {
     const response = await fetch(
-      "https://n8n.srv1018345.hstgr.cloud/webhook/2b091cb3-0f71-4f23-b4de-e5456b1e0a36",
+      import.meta.env.VITE_WEBHOOK_CONFIG_PHONE,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
