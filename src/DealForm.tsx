@@ -158,12 +158,11 @@ const DealForm = () => {
             if (data.responseBody?.failed) {
               // إعادة تعيين الرقم الجديد عند الفشل
               setWhatsappPhone("");
+              setError(`فشل إرسال واتساب. المحاولة ${newAttempt}`);
+            } else {
+              setStep(4);
+              setError("");
             }
-            else{
-             setStep(4);
-            setError("");
-          }
-            setError(`فشل إرسال واتساب. المحاولة ${newAttempt}`);
           })
           .catch((err) => {
             console.error(err);
