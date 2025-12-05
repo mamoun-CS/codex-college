@@ -248,12 +248,7 @@ function App() {
             <PlusCircle size={20} />
             إدخال صفقة جديدة
           </button>
-          <button
-            onClick={() => setCurrentPage('config')}
-            className="nav-button"
-            >
-          ⚙️ توجيه
-          </button>
+         
 
         </div>
         <button
