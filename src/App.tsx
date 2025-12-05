@@ -106,10 +106,10 @@ function App() {
   })
 
   const summaryData = useMemo(() => {
-    const totalDailyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.dailyAmountSum || 0), 0)
-    const totalMonthlyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.monthlyAmountSum || 0), 0)
-    const totalDailyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.dailyDealsCount || 0), 0)
-    const totalMonthlyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) =>  (item.monthlyDealsCount || 0), 0)
+    const totalDailyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.dailyAmountSum || 0), 0)
+    const totalMonthlyAmount = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.monthlyAmountSum || 0), 0)
+    const totalDailyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.dailyDealsCount || 0), 0)
+    const totalMonthlyDeals = filteredData.reduce((sum: number, item: EmployeeDeal) => sum + (item.monthlyDealsCount || 0), 0)
     return { totalDailyAmount, totalMonthlyAmount, totalDailyDeals, totalMonthlyDeals }
   }, [filteredData])/*
 

@@ -47,7 +47,13 @@ export function useEmployeeDealsData() {
         id: item["#ID"] ?? String(index + 1),
         employeeName: item["اسم الموظف"],
         date: item["التاريخ"],
-        amount: item["المبلغ"], // <-- لازم تتأكد إن عندك مفتاح "المبلغ" بالـ API
+        amount: item["المبلغ"] || 0,
+        dailyAmountSum: item["dailyAmountSum"] || 0,
+        monthlyAmountSum: item["monthlyAmountSum"] || 0,
+        dailyDealsCount: item["dailyDealsCount"] || 0,
+        monthlyDealsCount: item["monthlyDealsCount"] || 0,
+        dealsPerEmployeeDaily: item["dealsPerEmployeeDaily"] || 0,
+        dealsPerEmployeeMonthly: item["dealsPerEmployeeMonthly"] || 0,
       }));
 
       setData(mapped);
