@@ -88,11 +88,7 @@ const DealForm = () => {
       });
     } else {
       // ✅ Send data to n8n webhook
-<<<<<<< HEAD
       fetch(import.meta.env.VITE_WEBHOOK_DEAL_SUBMIT, {
-=======
-      fetch("https://n8n.srv1018345.hstgr.cloud/webhook/9bc23745-724c-4fac-8b42-f6651096a01c", {
->>>>>>> 4a0487d4d17fa73b9be6a3480b3364027bdc2445
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -149,11 +145,7 @@ const DealForm = () => {
         // إرسال الرقم الجديد الذي دخله المستخدم
         const payload = { ...formData, phone: whatsappPhone }; // استبدل الرقم القديم بالجديد
 
-<<<<<<< HEAD
         fetch(import.meta.env.VITE_WEBHOOK_WHATSAPP_VERIFY, {
-=======
-        fetch("https://n8n.srv1018345.hstgr.cloud/webhook/47d8c0e9-40a4-498a-82d6-b5bcda26a342", {
->>>>>>> 4a0487d4d17fa73b9be6a3480b3364027bdc2445
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -195,11 +187,7 @@ const DealForm = () => {
     // أرسل البيانات إلى Webhook
     const payload = { ...formData, email: emailToSend };
 
-<<<<<<< HEAD
     fetch(import.meta.env.VITE_WEBHOOK_EMAIL_FALLBACK, {
-=======
-    fetch("https://n8n.srv1018345.hstgr.cloud/webhook/6e9c7fda-712a-4e23-bfd8-4c07779f255c", {
->>>>>>> 4a0487d4d17fa73b9be6a3480b3364027bdc2445
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
