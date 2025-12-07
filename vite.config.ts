@@ -28,6 +28,7 @@ export default defineConfig({
       'fitting-singularly-heron.ngrok-free.app',
       'localhost',
       '127.0.0.1','codex-college-1-lrxc.onrender.com',
+      'codex-college-t7ea.onrender.com',
       '0.0.0.0'
     ],
   },
@@ -42,6 +43,7 @@ export default defineConfig({
       'srv936449.hstgr.cloud',
       '127.0.0.1',
       '10.229.120.84','codex-college-1-lrxc.onrender.com',
+      'codex-college-t7ea.onrender.com',
       '0.0.0.0'
     ],
   }
